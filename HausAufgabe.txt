@@ -4,9 +4,9 @@ db.calls.find({"duration_secs": {"$gte": 60}}, {"_id":0, "duration_secs":1, "tag
 (2) вывести имена и email всех клиентов не из 'usa'
 db.clients.find({"country": {"$ne": "usa"}}, {"_id": false, "fullname":true, "email": true})
 (3) вывести входящие тел. разговоры (calls) продолжительностью менее одного часа
-db.calls.find({"direction": {"$eq": "in"}, "duration_secs": {"$lt": 3600}})
+db.calls.find({"direction": "in", "duration_secs": {"$lt": 3600}})
 (4) для всех клиентов из 'germany' добавьте поле is_europe
-db.clients.updateMany({"country": {"$eq": "germany"}}, {"$set": {"is_europe": true} })
+db.clients.updateMany({"country": "germany"}, {"$set": {"is_europe": true} })
 (5) заблокируйте всех клиентов из 'usa'
 db.clients.updateMany({country : "usa"}, {$set: {is_blocked : true}})
 (6) добавьте в коллекцию credits несколько документов с необх. полями
