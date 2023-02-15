@@ -5,7 +5,7 @@ let persons = [
     'salary': 2000,
     'position': 'Developer',
     },
-    {'id': 1,
+    {'id': 2,
     'fullname': 'Alfred Koch',
     'age': 19,
     'salary': 1500,
