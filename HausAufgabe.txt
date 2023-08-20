@@ -1,15 +1,15 @@
-Описание занятия: Рамках БД "bank" напишите следующие запросы
-(1)  вывести только продолжительность и теги всех разговоров продолжительностью от одной минуты:
+Lesson description: Within the framework of the "bank" database, write the following queries
+(1)  output only the duration and tags of all conversations lasting from one minute:
 db.calls.find({"duration_secs": {"$gte": 60}}, {"_id":0, "duration_secs":1, "tags":1})
-(2) вывести имена и email всех клиентов не из 'usa'
+(2) output the names and email of all clients not from 'usa'
 db.clients.find({"country": {"$ne": "usa"}}, {"_id": false, "fullname":true, "email": true})
-(3) вывести входящие тел. разговоры (calls) продолжительностью менее одного часа
+(3) output incoming phone conversations (calls) lasting less than one hour
 db.calls.find({"direction": "in", "duration_secs": {"$lt": 3600}})
-(4) для всех клиентов из 'germany' добавьте поле is_europe
+(4) for all clients from 'germany', add the is_europe field
 db.clients.updateMany({"country": "germany"}, {"$set": {"is_europe": true} })
-(5) заблокируйте всех клиентов из 'usa'
+(5) block all clients from 'usa'
 db.clients.updateMany({country : "usa"}, {$set: {is_blocked : true}})
-(6) добавьте в коллекцию credits несколько документов с необх. полями
+(6) add several documents with the required fields to the credits collection
 db.credits.insertMany([
 {
     "id" : "cr00100",
@@ -34,7 +34,7 @@ db.credits.insertMany([
 }
 ])
 
-Коротко ответьте на вопрос, чем различаются такие структуры данных как массив и множество.
+Briefly answer the question, what is the difference between such data structures as an array and a set.
 
-Множество - это тип и структура данных, в которой могут храниться в неупорядоченном виде ограниченное количество уникальных значений (то есть повторения значений недопустимы)
-Массив - это тип и структура данных, в которой значения хранятся в упорядоченном виде (имеют индекс) и нет ограничения на уникальность его элементов
+A set is a data type and structure in which a limited number of unique values can be stored in an unordered form (that is, repetitions of values are not allowed).
+An array is a data type and structure in which values are stored in an ordered form (have an index) and there is no restriction on the uniqueness of its elements.
